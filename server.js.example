@@ -39,3 +39,20 @@
 
 
 // That's it! You're all done!
+
+var http = require('http')
+var fs = require('fs')
+
+const port = 3000
+
+fs.readFile('./public/index.html', function (error, html) {
+    if (error) throw error;
+    http.createServer(function (request, reponse) {
+        reponse.writeHeader(200, {
+            "Content-Type": "text/html"});
+        reponse.write(html)
+        reponse.end();
+        }).listen(port)
+    
+    });
+

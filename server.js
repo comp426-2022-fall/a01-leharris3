@@ -44,13 +44,10 @@ var http = require('http')
 var fs = require('fs')
 var argv = require('minimist')(process.argv.slice(2));
 
-const port = argv.port || 3000
+const port = argv["port"] || 3000
 
 fs.readFile('./public/index.html', 'utf8', (err, data) => {
-    if (err) {
-        console.error(error)
-        return
-    }
+    if (err) { throw error}
     server = http.createServer((req, res) => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'text/html');
